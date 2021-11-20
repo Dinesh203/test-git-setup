@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>This is login page</h1><br>
+
+    {% if messages %}
+    {% for message in messages %}
+        <p>{{message}}</p>
+    {% endfor %}
+    {% endif %} <br>
+
+<div class="container mt-3 mb-3">
+
+    <div class="row">
+        {% comment %} {% for post in posts %} {% endcomment %}
+        <div class="col-lg-4 my-4">
+            <div class="card shadow" style="width: 20rem; height: 33rem;">
+                <div class="card-body">
+                  <p> ipsum dolor sit amet consectetur adipisicing elit. Officia debitis distinctio eius ab repellendus eaque dolorem sunt, cumque minus architecto, a nihil praesentium, voluptas non aperiam quae necessitatibus repudiandae eligendi.</p>
+                  {% comment %} <h5 class="card-title">{{post.title}} <br><small>by {{post.author}}</small></h5> {% endcomment %}
+                  {% comment %} <p class="card-text">{{post.content| truncatechars:210}}</p> {% endcomment %}
+                  {% comment %} <a href="blog/{{post.slug}}" class="btn btn-primary">Read More {% if user.is_superuser %}<a href="delete_blog_post/{{post.slug}}/" class="btn btn-danger mx-4">Delete Blog</a>{% endif %}</a> {% endcomment %}
+                </div>
+              </div>
+        </div>
+        {% comment %} {% endfor %} {% endcomment %}
+    </div>
+</div>
+
+{blg.as_p}}
+<form action="" method="POST">
+    {% csrf_token %}
+    {% for b  in blg %}
+        <h3> {{b.label_tag}} {{blg}} {{b.errors|striptags}} </h3>
+    {% endfor %} 
+    <button type="submit" value="Submit">Submit</button>
+</form>
+<h3><a href="{% url "signup"%}">Go to sigh up</a></h3>
+
+
+{% endblock content %}

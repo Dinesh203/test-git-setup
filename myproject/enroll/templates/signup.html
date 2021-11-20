@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>This is sigh up page</h1>
+<form action="" method="POST">
+{% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Sign up"><br>
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        <p>{{message}}</p>
+    {% endfor %}
+{% endif %} <br>
+
+<h3> <a href="{% url "home"%}">Home page</a></h3>
+<h3> <a href="{% url "loginpage"%}">Login here </a></h3>
+
+{% endblock content %}
